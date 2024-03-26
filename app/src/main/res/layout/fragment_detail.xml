@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ui.detail.DetailFragment">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchWatched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchTextAppearance="@style/SwitchTextAppearance"
+        android:text="Watched"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePoster"
+        app:layout_constraintEnd_toStartOf="@+id/imagePoster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagePoster"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/avengers_poster"
+        app:layout_constraintEnd_toEndOf="@+id/userScoreBar"
+        app:layout_constraintStart_toStartOf="@+id/userScoreBar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/trailerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePoster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePoster"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trailer"
+        app:layout_constraintEnd_toEndOf="@+id/trailerButton"
+        app:layout_constraintStart_toStartOf="@+id/trailerButton"
+        app:layout_constraintTop_toBottomOf="@+id/trailerButton" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@android:style/TextAppearance.Material.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Overview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userScoreBar" />
+
+    <TextView
+        android:id="@+id/overviewText"
+        style="@android:style/TextAppearance.Material.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="150dp"
+        android:scrollbars="vertical"
+        tools:text="In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora
+        on a unique mission, but becomes torn between following orders and protecting an alien civilization"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <RatingBar
+        android:id="@+id/userScoreBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/imagePoster" />
+
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="?attr/colorError"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
