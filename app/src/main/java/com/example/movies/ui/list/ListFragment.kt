@@ -13,25 +13,29 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.R
 import com.example.movies.databinding.FragmentListBinding
-import com.example.data.MovieRepository
 import com.example.movies.ui.common.app
 import kotlinx.coroutines.launch
-import com.example.movies.data.database.MovieRoomDataSource
-import com.example.movies.data.server.MovieServerDataSource
-import com.example.usecases.GetMovieListUseCase
-import com.example.usecases.RequestMovieListUseCase
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class ListFragment : Fragment() {
 
-    private val viewModel: ListViewModel by viewModels { app.component.listViewModelFactory }
+    /* This component and its dependencies will
+    live and die with the ListFragment */
+    private lateinit var component: ListFragmentComponent
+
+    private val viewModel: ListViewModel by viewModels { component.listViewModelFactory }
 
     private lateinit var listState: ListState
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        component = app.component.plus(ListFragmentModule())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
