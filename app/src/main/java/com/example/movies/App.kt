@@ -8,7 +8,7 @@ class App : Application() {
 
     /*
     This line removed because Dagger provides the database dependency
-    val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
+    val database: MovieDatabase by lazy { MovieDatabase.getDatabase(this) }
     */
 
     /** Dagger component setup **/

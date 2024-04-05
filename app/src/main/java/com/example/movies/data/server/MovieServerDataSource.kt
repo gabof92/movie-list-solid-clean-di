@@ -6,8 +6,10 @@ import com.example.domain.Error
 import com.example.movies.data.server.Movie as RemoteMovie
 import com.example.domain.Movie
 import com.example.movies.data.tryCall
+import com.example.movies.di.ApiKey
+import javax.inject.Inject
 
-class MovieServerDataSource(private val apiKey: String) : MovieRemoteDataSource {
+class MovieServerDataSource  @Inject constructor(@ApiKey private val apiKey: String) : MovieRemoteDataSource {
 
     override suspend fun getMovie(id: Int): Either<Error, Movie> = tryCall {
         RemoteConnection

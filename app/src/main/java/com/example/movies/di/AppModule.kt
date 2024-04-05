@@ -5,12 +5,12 @@ import androidx.room.Room
 import com.example.data.datasource.MovieLocalDataSource
 import com.example.data.datasource.MovieRemoteDataSource
 import com.example.movies.R
-import com.example.movies.data.database.AppDatabase
+import com.example.movies.data.database.MovieDatabase
 import com.example.movies.data.database.MovieRoomDataSource
 import com.example.movies.data.server.MovieServerDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -26,18 +26,23 @@ object AppModule {
     @Singleton
     fun provideDatabase(app: Application) = Room.databaseBuilder(
         app,
-        AppDatabase::class.java,
+        MovieDatabase::class.java,
         "app_database"
     )
         .fallbackToDestructiveMigration()
         .build()
 
     @Provides
-    fun provideRemoteDataSource(@ApiKey apiKey: String): MovieRemoteDataSource =
-        MovieServerDataSource(apiKey)
+    @Singleton
+    fun provideMovieDao(db: MovieDatabase) = db.movieDao()
 
-    @Provides
-    fun provideLocalDataSource(db: AppDatabase): MovieLocalDataSource =
-        MovieRoomDataSource(db.movieDao())
+}
 
+@Module
+abstract class AppDataModule{
+    @Binds
+    abstract fun bindsRemoteDataSource(remoteDataSource: MovieServerDataSource): MovieRemoteDataSource
+
+    @Binds
+    abstract fun bindsLocalDataSource(localDataSource: MovieRoomDataSource): MovieLocalDataSource
 }

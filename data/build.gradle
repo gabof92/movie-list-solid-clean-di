@@ -11,6 +11,11 @@ java {
 dependencies {
     implementation project(':domain')
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+
     //Arrow ("Either" class for error handling)
     implementation "io.arrow-kt:arrow-core:1.1.5"
+
+    /*Provides annotations @Inject and @Singleton
+    for injecting dependencies directly to constructor*/
+    implementation "javax.inject:javax.inject:1"
 }

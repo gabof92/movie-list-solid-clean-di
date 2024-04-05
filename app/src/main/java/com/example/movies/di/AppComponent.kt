@@ -10,7 +10,7 @@ import javax.inject.Singleton
 import dagger.Component
 
 @Singleton
-@Component(modules = [UseCaseModule::class, DataModule::class, AppModule::class])
+@Component(modules = [AppModule::class, AppDataModule::class])
 interface AppComponent {
 
     //plus functions will add the subcomponents to the graph of dependencies
