@@ -15,17 +15,17 @@ import com.example.movies.R
 import com.example.movies.databinding.FragmentListBinding
 import com.example.movies.ui.common.app
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class ListFragment : Fragment() {
 
-    /* This component and its dependencies will
-    live and die with the ListFragment */
-    private lateinit var component: ListFragmentComponent
+    @Inject
+    lateinit var vmFactory: ListViewModelFactory
 
-    private val viewModel: ListViewModel by viewModels { component.listViewModelFactory }
+    private val viewModel: ListViewModel by viewModels { vmFactory }
 
     private lateinit var listState: ListState
 
@@ -34,7 +34,9 @@ class ListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component = app.component.plus(ListFragmentModule())
+        /*This will go through all the lines tagged @Inject within ListFragment
+        and inject the corresponding dependencies*/
+        app.component.inject(this)
     }
 
     override fun onCreateView(

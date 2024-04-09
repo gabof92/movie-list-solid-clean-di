@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.example.usecases.GetMovieListUseCase
 import com.example.usecases.RequestMovieListUseCase
+import javax.inject.Inject
 
 class ListViewModel(
     //not private val because it's only used in init
@@ -45,7 +46,7 @@ class ListViewModel(
     )
 }
 
-class ListViewModelFactory(
+class ListViewModelFactory @Inject constructor(
     private val getMovieListUseCase: GetMovieListUseCase,
     private val requestMovieListUseCase: RequestMovieListUseCase
 ) :

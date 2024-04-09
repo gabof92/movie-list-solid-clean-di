@@ -11,6 +11,9 @@ import kotlinx.coroutines.launch
 import com.example.usecases.GetMovieListUseCase
 import com.example.usecases.RequestMovieUseCase
 import com.example.usecases.SwitchWatchedUseCase
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 
@@ -60,11 +63,12 @@ class DetailViewModel(
 
 }
 
-class DetailViewModelFactory(
+class DetailViewModelFactory @AssistedInject constructor(
     private val getMovieListUseCase: GetMovieListUseCase,
     private val requestMovieUseCase: RequestMovieUseCase,
     private val switchWatchedUseCase: SwitchWatchedUseCase,
-    private val movieId: Int
+    //This marks that we will provide it manually
+    @Assisted private val movieId: Int
 ) :
     ViewModelProvider.NewInstanceFactory() {
 
@@ -83,4 +87,9 @@ class DetailViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
+}
+
+@AssistedFactory
+interface DetailViewModelAssistedFactory{
+    fun create(movieId: Int): DetailViewModelFactory
 }

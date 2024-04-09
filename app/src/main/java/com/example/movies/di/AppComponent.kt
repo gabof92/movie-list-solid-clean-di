@@ -1,10 +1,8 @@
 package com.example.movies.di
 
 import android.app.Application
-import com.example.movies.ui.detail.DetailFragmentComponent
-import com.example.movies.ui.detail.DetailFragmentModule
-import com.example.movies.ui.list.ListFragmentComponent
-import com.example.movies.ui.list.ListFragmentModule
+import com.example.movies.ui.detail.DetailFragment
+import com.example.movies.ui.list.ListFragment
 import dagger.BindsInstance
 import javax.inject.Singleton
 import dagger.Component
@@ -13,9 +11,8 @@ import dagger.Component
 @Component(modules = [AppModule::class, AppDataModule::class])
 interface AppComponent {
 
-    //plus functions will add the subcomponents to the graph of dependencies
-    fun plus(listFragmentModule: ListFragmentModule): ListFragmentComponent
-    fun plus(detailFragmentModule: DetailFragmentModule): DetailFragmentComponent
+    fun inject(fragment: ListFragment)
+    fun inject(fragment: DetailFragment)
 
     @Component.Factory
     interface Factory{

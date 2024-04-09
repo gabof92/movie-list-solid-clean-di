@@ -18,26 +18,28 @@ import com.example.movies.ui.MainActivity
 import com.example.movies.ui.common.app
 import com.example.movies.ui.common.toHttpsUrl
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class DetailFragment : Fragment() {
 
-    private lateinit var component: DetailFragmentComponent
+    @Inject
+    private lateinit var vmFactory: DetailViewModelAssistedFactory
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
     private val safeArgs: DetailFragmentArgs by navArgs()
 
-    private val viewModel: DetailViewModel by viewModels { component.detailViewModelFactory }
+    private val viewModel: DetailViewModel by viewModels { vmFactory.create(safeArgs.movieId) }
 
     private lateinit var detailState: DetailState
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component = app.component.plus(DetailFragmentModule(safeArgs.movieId))
+        app.component.inject(this)
     }
 
     override fun onCreateView(
