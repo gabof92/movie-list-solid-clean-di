@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.R
 import com.example.movies.databinding.FragmentListBinding
-import com.example.movies.ui.common.app
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

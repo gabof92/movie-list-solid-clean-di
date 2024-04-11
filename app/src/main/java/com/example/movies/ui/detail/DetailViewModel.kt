@@ -2,7 +2,6 @@ package com.example.movies.ui.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.toError
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,9 +11,6 @@ import kotlinx.coroutines.launch
 import com.example.usecases.GetMovieListUseCase
 import com.example.usecases.RequestMovieUseCase
 import com.example.usecases.SwitchWatchedUseCase
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update

@@ -9,17 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.movies.R
 import com.example.movies.databinding.FragmentDetailBinding
 import com.example.movies.data.server.BASE_URL_IMG
 import com.example.movies.ui.MainActivity
-import com.example.movies.ui.common.app
 import com.example.movies.ui.common.toHttpsUrl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {

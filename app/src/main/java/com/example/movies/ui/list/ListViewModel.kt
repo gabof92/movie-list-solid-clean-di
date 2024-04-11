@@ -1,7 +1,6 @@
 package com.example.movies.ui.list
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.toError
 import kotlinx.coroutines.flow.MutableStateFlow
