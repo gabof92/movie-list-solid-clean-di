@@ -13,20 +13,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.R
 import com.example.movies.databinding.FragmentListBinding
-import com.example.data.MovieRepository
-import com.example.movies.ui.common.app
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import com.example.movies.data.database.MovieRoomDataSource
-import com.example.movies.data.server.MovieServerDataSource
-import com.example.usecases.GetMovieListUseCase
-import com.example.usecases.RequestMovieListUseCase
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    private val viewModel: ListViewModel by viewModels { app.component.listViewModelFactory }
+
+    private val viewModel: ListViewModel by viewModels()
 
     private lateinit var listState: ListState
 

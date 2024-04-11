@@ -9,33 +9,22 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.movies.R
 import com.example.movies.databinding.FragmentDetailBinding
-import com.example.data.MovieRepository
 import com.example.movies.data.server.BASE_URL_IMG
-import com.example.movies.data.database.MovieRoomDataSource
-import com.example.movies.data.server.MovieServerDataSource
-import com.example.usecases.GetMovieListUseCase
-import com.example.usecases.RequestMovieUseCase
-import com.example.usecases.SwitchWatchedUseCase
 import com.example.movies.ui.MainActivity
-import com.example.movies.ui.common.app
 import com.example.movies.ui.common.toHttpsUrl
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: DetailFragmentArgs by navArgs()
-
-    private val viewModel: DetailViewModel by viewModels { app.component.detailViewModelFactory }
+    private val viewModel: DetailViewModel by viewModels()
 
     private lateinit var detailState: DetailState
 

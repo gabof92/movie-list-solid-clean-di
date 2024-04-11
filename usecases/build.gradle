@@ -12,4 +12,8 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+
+    /*Provides annotations @Inject and @Singleton
+    for injecting dependencies directly to constructor*/
+    implementation "javax.inject:javax.inject:1"
 }
