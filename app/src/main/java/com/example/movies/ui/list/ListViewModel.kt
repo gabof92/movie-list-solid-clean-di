@@ -12,9 +12,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.example.usecases.GetMovieListUseCase
 import com.example.usecases.RequestMovieListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class ListViewModel(
+@HiltViewModel
+class ListViewModel @Inject constructor(
     //not private val because it's only used in init
     getMovieListUseCase: GetMovieListUseCase,
     private val requestMovieListUseCase: RequestMovieListUseCase
@@ -44,22 +46,4 @@ class ListViewModel(
         val movies: List<com.example.domain.Movie>? = null,
         val error: com.example.domain.Error? = null
     )
-}
-
-class ListViewModelFactory @Inject constructor(
-    private val getMovieListUseCase: GetMovieListUseCase,
-    private val requestMovieListUseCase: RequestMovieListUseCase
-) :
-    ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-
-            return ListViewModel(getMovieListUseCase, requestMovieListUseCase) as T
-
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
 }

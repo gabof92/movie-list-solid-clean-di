@@ -17,30 +17,19 @@ import com.example.movies.data.server.BASE_URL_IMG
 import com.example.movies.ui.MainActivity
 import com.example.movies.ui.common.app
 import com.example.movies.ui.common.toHttpsUrl
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
-
-    @Inject
-    lateinit var vmFactory: DetailViewModelAssistedFactory
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: DetailFragmentArgs by navArgs()
-
-    private val viewModel: DetailViewModel by viewModels { vmFactory.create(safeArgs.movieId) }
+    private val viewModel: DetailViewModel by viewModels()
 
     private lateinit var detailState: DetailState
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        app.component.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

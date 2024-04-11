@@ -11,9 +11,12 @@ import com.example.movies.data.server.MovieServerDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
@@ -39,6 +42,7 @@ object AppModule {
 }
 
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class AppDataModule{
     @Binds
     abstract fun bindsRemoteDataSource(remoteDataSource: MovieServerDataSource): MovieRemoteDataSource

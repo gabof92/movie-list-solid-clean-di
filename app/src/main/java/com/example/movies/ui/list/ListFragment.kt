@@ -14,30 +14,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.R
 import com.example.movies.databinding.FragmentListBinding
 import com.example.movies.ui.common.app
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    @Inject
-    lateinit var vmFactory: ListViewModelFactory
 
-    private val viewModel: ListViewModel by viewModels { vmFactory }
+    private val viewModel: ListViewModel by viewModels()
 
     private lateinit var listState: ListState
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        /*This will go through all the lines tagged @Inject within ListFragment
-        and inject the corresponding dependencies*/
-        app.component.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

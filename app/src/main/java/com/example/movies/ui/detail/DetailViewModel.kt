@@ -1,5 +1,6 @@
 package com.example.movies.ui.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,19 +15,24 @@ import com.example.usecases.SwitchWatchedUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     //not private val because it's only used in init
     getMovieListUseCase: GetMovieListUseCase,
     private val requestMovieUseCase: RequestMovieUseCase,
     private val switchWatchedUseCase: SwitchWatchedUseCase,
-    private val movieId: Int
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
+
+    private val movieId: Int = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).movieId
 
     init {
         viewModelScope.launch {
@@ -61,35 +67,4 @@ class DetailViewModel(
         val error: com.example.domain.Error? = null
     )
 
-}
-
-class DetailViewModelFactory @AssistedInject constructor(
-    private val getMovieListUseCase: GetMovieListUseCase,
-    private val requestMovieUseCase: RequestMovieUseCase,
-    private val switchWatchedUseCase: SwitchWatchedUseCase,
-    //This marks that we will provide it manually
-    @Assisted private val movieId: Int
-) :
-    ViewModelProvider.NewInstanceFactory() {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-
-            return DetailViewModel(
-                getMovieListUseCase,
-                requestMovieUseCase,
-                switchWatchedUseCase,
-                movieId
-            ) as T
-
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
-}
-
-@AssistedFactory
-interface DetailViewModelAssistedFactory{
-    fun create(movieId: Int): DetailViewModelFactory
 }
