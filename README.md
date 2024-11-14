@@ -1,6 +1,6 @@
 # Popular Movies App 🎬
 
-A robust Android app designed to showcase knowledge of **SOLID principles**, **Clean Architecture**, and **Dependency Injection**. This app leverages TheMovieDatabase (TMDb) API to display a list of popular movies in your region, view movie details, and manage a list of favorites.
+A robust Android app designed to showcase knowledge of **SOLID principles**, **Clean Architecture**, and **Dependency Injection**. This app leverages TheMovieDatabase (TMDb) API to display a list of popular movies in your region, view movie details, and mark movies as watched.
 
 ## Key Architecture and Design Principles
 - **SOLID Principles**: Follows best practices in software design to ensure a modular, flexible, and maintainable codebase.
@@ -9,8 +9,8 @@ A robust Android app designed to showcase knowledge of **SOLID principles**, **C
 
 ## Features
 - **Browse Popular Movies**: Discover the latest trending movies in your region.
-- **View Movie Details**: Access detailed movie information, including synopsis, release date, rating, and genres.
-- **Mark as Favorite**: Keep track of movies you love by adding them to a personal favorites list.
+- **View Movie Details**: Access detailed movie information, including synopsis, rating, and trailer.
+- **Mark as Watched**: Add a checkmark to the thumbnail of movies you’ve marked as watched.
 
 ## Technology Stack
 - **Kotlin**: Built with Kotlin for modern, expressive code.
